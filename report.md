@@ -1,103 +1,154 @@
-# Project 44 — AI Tools in Developers' Workflows
+# AI Tools in Developers’ Workflows
 
-**Theme:** Technology, AI & Digital World
-**Authors:** Mustari Ifthe (2023331050); Md. Meheduz Zaman (2023331064)
-**Date:** 3 October 2026
+## Evidence from the Stack Overflow Developer Surveys, 2023–2025
+
+| Project information | Details |
+|---|---|
+| Project | 44 — Data Science Lab |
+| Theme | Technology, AI & Digital World |
+| Authors | Mustari Ifthe (2023331050); Md. Meheduz Zaman (2023331064) |
+| Date | 3 October 2026 |
+| Data publisher | Stack Overflow / Stack Exchange Inc. |
 
 ## Abstract
 
-Using the official Stack Overflow Developer Survey releases for 2023–2025, we describe current AI use, sentiment, trust, experience, roles and Bangladesh's position within the responding sample. Current use increased from 44.38% to 78.50%, while favorable sentiment decreased from 76.28% to 59.72%. Bangladesh's descriptive adoption rate exceeded the global rate in each year, although its valid samples were only 490, 324 and 194. Experience and adoption were associated within every year, with Cramér's V between 0.0843 and 0.1491. These findings describe self-selected respondents; they cannot establish population trends or causal effects.
+This study examines AI tool adoption, sentiment and trust in 203,812 records from the official Stack Overflow Developer Surveys for 2023–2025. Current use increased from 44.38% to 78.50%, while favorable sentiment decreased from 76.28% to 59.72%. Bangladesh respondents reported higher adoption each year, with valid samples of 490, 324 and 194. Experience and adoption were associated within each release, with Cramér’s V ranging from 0.0843 to 0.1491. The findings describe voluntary respondents; question changes, missing responses and small country samples limit generalization and causal interpretation.
 
-## 1. Question, data and method
+## 1. Introduction and Research Objective
 
-**Research question:** How has AI tool adoption and sentiment among developers changed from 2023 to 2025, and how does Bangladesh compare with the global sample?
+AI tool adoption, favorable sentiment and trust measure different aspects of developers’ workflows. This study examines each separately, alongside variation by experience, role and country.
 
-We use public CSVs and schemas from the [official Stack Overflow survey archive](https://github.com/StackExchange/Survey/tree/main/packages/archive), not a mirror. One row is a respondent's record within one release. This is a voluntary annual online survey, not a panel following individuals. The notebook preserves `raw_df`, works on a copy, uses relative paths and fixes the sampling seed at 42. `data/manifest.json` records exact URLs, sizes, acquisition date and SHA-256 hashes.
+> **Research question:** How has AI tool adoption and sentiment among developers changed from 2023 to 2025, and how does Bangladesh compare with the global sample?
 
-| Year | Local rows × columns | Country entries for Bangladesh |
-|---|---:|---:|
-| 2023 | 89,184 × 84 | 490 |
-| 2024 | 65,437 × 114 | 327 |
-| 2025 | 49,191 × 172 | 220 |
+The objective is to describe respondent patterns and assess experience associations while accounting for measurement differences.
 
-The 2024 dimensions match the brief. The 2025 archive contains 172 more rows than the official profile total of 49,019. Bangladesh country counts also differ: the profiles report 325 in 2024 and 219 in 2025. We document these release differences and retain the actual file values. The 2025 file has 177 distinct reported countries; question count is not equivalent to CSV column count. See the [2024 profile](https://survey.stackoverflow.co/2024/developer-profile), [2025 profile](https://survey.stackoverflow.co/2025/developers) and [2025 survey overview](https://survey.stackoverflow.co/2025/).
+## 2. Data and Methodology
 
-Before analysis, a schema crosswalk checks each AI column's existence, source question and observed answer options. Four choices are essential:
+### 2.1 Data Sources and Study Population
 
-- **Adoption:** affirmative `AISelect` answers count as current use, including all three frequency options in 2025. Plans to use AI count as noncurrent. This consistently reproduces the approximate 44%, 62% and 79% series; “using or planning” is a different denominator/definition.
-- **Trust:** `AIBen` measures accuracy trust in 2023, while `AIAcc` measures benefits that year. Trust uses `AIAcc` in 2024–2025. Names alone would produce an incorrect comparison.
-- **Experience:** 2023–2024 use professional coding years; 2025 uses broader professional work experience and requests a blank for zero. Bands are therefore interpreted within year. Textual “less than 1” and “more than 50” become 0.5 and 51; invalid fractions or values outside the declared 0–70 analysis range become missing.
-- **Products:** separate 2023 search/developer products, combined 2024 products and 2025 LLM models remain separate. Semicolon selections become nullable indicators per question and year. `DevType` is a single main role in these schemas.
+Public response files and schemas come from the [official survey archive](https://github.com/StackExchange/Survey/tree/main/packages/archive). Each row represents one voluntary respondent’s annual record; individuals cannot be tracked across releases. Exact URLs, sizes and SHA-256 checksums are recorded in `data/manifest.json`.
 
-Missing sentinels and whitespace are normalized, without imputing zeros. No exact duplicate records or within-year duplicate IDs were found. All 203,812 source rows remain in the analysis copy; complete cases are selected separately for each chart or test. The quality assessment reports missingness for every source column. In 2025, 42 work-experience entries fail the declared range/fraction rule; this is an analysis choice, not proof that every extreme value is impossible.
+**Table 1. Dimensions of the analyzed response files**
 
-## 2. Descriptive results
+| Release | Respondents | Source columns | Bangladesh country responses |
+|---|---:|---:|---:|
+| 2023 | 89,184 | 84 | 490 |
+| 2024 | 65,437 | 114 | 327 |
+| 2025 | 49,191 | 172 | 220 |
 
-### Adoption and Bangladesh
+The 2025 archive exceeds the profile total of 49,019 by 172 records. Bangladesh counts also differ from the profile’s 325/219 for 2024/2025. Archive values are retained and discrepancies disclosed. The 2025 file has 177 reported countries; expanded CSV columns differ from the publisher’s 62 questions. [2024 profile](https://survey.stackoverflow.co/2024/developer-profile); [2025 profile](https://survey.stackoverflow.co/2025/developers); [2025 overview](https://survey.stackoverflow.co/2025/).
 
-| Year | Global valid n | Current users | Global adoption | Bangladesh valid n | Bangladesh adoption |
+### 2.2 Variable Definitions and Harmonization
+
+A schema crosswalk establishes the source question, column availability and observed answer categories before analysis.
+
+- **Current use:** Affirmative `AISelect` answers, including all 2025 frequencies, count as current use. Plans count as noncurrent; missing answers remain missing.
+- **Sentiment:** Favorable combines Favorable and Very favorable. Full distributions retain Indifferent and Unsure; sensitivity excludes Indifferent only.
+- **Trust:** Use `AIBen` in 2023 and `AIAcc` in 2024–2025. The 2023 `AIAcc` question measures anticipated benefits.
+- **Experience:** Use professional coding years (`YearsCodePro`) in 2023–2024 and broader work experience (`WorkExp`) in 2025. Bands are under one, 1–5, 6–10 and 11+ years, interpreted within release. The 2025 blank-zero instruction prevents distinguishing zero from nonresponse.
+- **Roles and selections:** `DevType` is one main role. Semicolon selections receive question/year-specific indicators; skipped questions remain missing.
+
+Product questions remain separate: 2023 search/development products, 2024 combined products and 2025 LLM models cannot form a common product trend.
+
+### 2.3 Data Quality and Analysis Strategy
+
+Whitespace and missing sentinels were standardized without zero imputation. No exact duplicates or duplicate IDs within a release were found. All records were retained; each analysis selects its own complete cases. Missingness is reported for every source column.
+
+Experience phrases below one/above 50 years become 0.5/51. Invalid fractions and values outside the declared 0–70 range are excluded from experience analyses, flagging 42 entries in 2025. Sensitivity assesses this analysis rule’s upper cap.
+
+All results report valid n. Tests use α = 0.05 and prioritize effects. Holm correction covers three annual chi-square tests and one 2025 Mann–Whitney comparison; three exploratory Spearman comparisons form a separate corrected family.
+
+## 3. Results
+
+### 3.1 Current AI Use and Bangladesh
+
+**Table 2. Current AI use among respondents with valid answers**
+
+| Release | Global valid n | Global current users | Global use | Bangladesh valid n | Bangladesh use |
 |---|---:|---:|---:|---:|---:|
 | 2023 | 87,973 | 39,042 | 44.38% | 490 | 57.96% |
 | 2024 | 60,907 | 37,662 | 61.84% | 324 | 71.91% |
 | 2025 | 33,720 | 26,469 | 78.50% | 194 | 88.14% |
 
-Current use increased by **34.12 percentage points** from 2023 to 2025 among valid answerers. The global denominator includes every valid AI-use answer, even when country is missing. Bangladesh additionally requires a reported country and is included in the global sample. The country comparison remains descriptive, with no small experience or role subdivisions. The 2025 Bangladesh Wilson interval is 82.84%–91.97%; it describes binomial uncertainty conditional on the responding sample and cannot correct self-selection.
+Current use increased by **34.12 percentage points**. Global includes all valid AI-use answers; Bangladesh additionally requires country. Bangladesh is included globally, so the series overlap.
 
-### Sentiment and trust
+Bangladesh’s adoption exceeded the global rate each year. Its 2025 model-based 95% Wilson interval is 82.84%–91.97%, assuming independent-binomial responses without correcting participation bias. Country comparisons remain descriptive, without small Bangladesh subgroups.
 
-| Year | Sentiment n | Favorable, all answers | Favorable without Indifferent (n) | Trust n | Trust / distrust |
+### 3.2 Sentiment and Trust
+
+**Table 3. Favorable sentiment and reported trust in AI output**
+
+| Release | Sentiment n | Favorable, all valid answers | Favorable excluding Indifferent (n) | Trust n | Trust / distrust |
 |---|---:|---:|---:|---:|---:|
 | 2023 | 61,501 | 76.28% | 91.35% (51,354) | 61,396 | 42.15% / 27.17% |
 | 2024 | 45,873 | 71.97% | 88.49% (37,309) | 37,302 | 43.04% / 30.37% |
 | 2025 | 33,467 | 59.72% | 72.45% (27,587) | 33,297 | 32.79% / 45.70% |
 
-“Favorable” combines Favorable and Very favorable. Contrary to the supplied brief's neutral-option claim, **Indifferent and Unsure are observed in all three files**. We show complete category distributions and the sensitivity excluding Indifferent, while retaining Unsure. Both definitions show falling favorable shares. This does not prove identical survey presentation or routing. Reported trust is confidence in tool output, not measured accuracy; in 2025 distrust exceeds trust among item answerers.
+Favorable sentiment declined under both definitions. **Indifferent and Unsure occur in all three files**, so introducing Indifferent in 2025 cannot explain the decline. Observed labels do not establish identical routing or presentation.
 
-### Experience, role, age and selections
+Trust combines Somewhat/Highly trust; distrust combines the negative categories. Distrust exceeded trust in 2025. This measures confidence in output, not objective accuracy. Adoption, sentiment and trust have different respondent denominators.
 
-Within-year adoption is higher among less experienced respondents. In 2024 it is 69.76% for 1–5 professional coding years (n=17,053) and 53.12% for 11+ (n=18,132). In 2025 the corresponding professional work groups are 83.07% (n=8,032) and 75.71% (n=16,185); the broader construct prevents an exact cross-year experience comparison. The notebook additionally shows age, main-role, experience distribution and sentiment/trust by experience.
+### 3.3 Experience, Roles and Selected Products
 
-The most selected primary developer product is GitHub Copilot in 2023, while ChatGPT leads the combined 2024 question and openAI GPT (chatbot models) leads the 2025 model question. These are different constructs. Tables report both selected counts and question-answerer percentages; stacked tool charts report composition of all mentions, including an Other segment. Multiple selections mean mention composition is not respondent prevalence. Every chart states its valid n and has an interpretation.
+Less experienced groups reported higher adoption within each release. In 2024, use was 69.76% for 1–5 coding years (n = 17,053) versus 53.12% for 11+ (n = 18,132). The 2025 work-experience groups reported 83.07% (n = 8,032) and 75.71% (n = 16,185); changed wording limits cross-year interpretation.
 
-## 3. Statistical evidence
+Among the ten largest 2025 roles, front-end developers reported 86.86% use (n = 1,484) and embedded developers 65.16% (n = 1,016). These descriptions do not isolate role effects. The notebook also examines age and sentiment/trust by experience.
 
-At α=0.05, the primary family comprises three annual chi-square tests and one 2025 Mann–Whitney comparison, with **Holm correction** across all four.
+GitHub Copilot led the 2023 development-product question at 85.23% (22,078/25,904), ChatGPT the combined 2024 question at 85.31% (37,923/44,453), and “openAI GPT (chatbot models)” the 2025 question at 82.45% (13,424/16,281). These percentages use respondent denominators; tool stacks show mention composition, including Other selections.
 
-**Chi-square hypotheses:** H0: current AI use and experience band are independent within a year. H1: they are associated. Counts are categorical; each respondent contributes once. Unobserved bands are removed, and all expected counts exceed five.
+### 3.4 Statistical Associations
 
-| Year | Complete-case n | Cramér's V | χ² (df) | Minimum expected count | Holm-adjusted p |
+**AI use and experience band.** H₀: independence within release; H₁: association. Pearson’s chi-square uses categorical counts, with one contribution per respondent and unobserved bands removed. Respondent independence is assumed; every expected count exceeds five.
+
+**Table 4. Annual chi-square tests, with effect sizes and Holm correction**
+
+| Release | Complete-case n | Cramér’s V | χ² (df) | Minimum expected count | Adjusted p |
 |---|---:|---:|---:|---:|---:|
 | 2023 | 66,136 | 0.1411 | 1,317.078 (3) | 769.12 | 1.16 × 10⁻²⁸⁴ |
 | 2024 | 50,298 | 0.1491 | 1,118.125 (3) | 1,044.45 | 1.28 × 10⁻²⁴¹ |
 | 2025 | 31,104 | 0.0843 | 221.293 (2) | 1,447.41 | 8.85 × 10⁻⁴⁹ |
 
-We reject independence in every year. The association magnitudes are modest, despite exceptionally small p-values. The smaller 2025 V should not be interpreted as proof of a weakening population relationship, because experience wording and sample composition differ.
+Independence is rejected each year, with modest effects despite small p-values. Changed wording and samples prevent interpreting the smaller 2025 V as a weakening population relationship.
 
-**Mann–Whitney hypotheses:** H0: 2025 professional work-experience distributions are equal for current users and nonusers. H1: they differ. Users have median 10 years (n=24,567), compared with 14 years for nonusers (n=6,537). The rank-biserial effect is **−0.1527**, oriented so a negative value means users tend to report fewer years. U=68,032,635 and Holm-adjusted p=2.09 × 10⁻⁸⁰. Normality, skewness and variance diagnostics are reported; normality and equal variance are not required for this test. Integer-year ties receive the asymptotic tie correction. Unequal distribution shapes prevent interpreting the result solely as a median test.
+**Work experience among users and nonusers.** H₀ states that their 2025 work-experience distributions are equal; H₁ states that they differ. The Mann–Whitney comparison yields **rank-biserial = −0.1527**, U = 68,032,635 and adjusted p = 2.09 × 10⁻⁸⁰. Users report a median of 10 years (n = 24,567), compared with 14 years among nonusers (n = 6,537). The negative effect indicates that users tend to report fewer years.
 
-Removing the 70-year cap increases this test's sample to 31,122 and changes rank-biserial only to −0.1531. This sensitivity supports the qualitative result without establishing causation.
+Normality, skewness and variance diagnostics are reported. The rank test requires neither normality nor equal variance, accounts for ties, and supports a rank/distribution interpretation. Removing the cap gives n = 31,122 and rank-biserial = −0.1531, preserving the substantive result.
 
-Exploratory Spearman correlations use one 2025 complete-case sample of 14,930, including the model question. Use versus sentiment has rho=0.1865; experience versus sentiment rho=0.0785; use versus experience rho=−0.0077 (adjusted p=0.346). This selected subset differs from the primary test sample, explaining why the two experience associations need not agree. These three exploratory comparisons have their own Holm correction.
+**Exploratory correlations.** Spearman’s rank method accommodates ordinal sentiment and skewed experience. It uses one 2025 complete-case sample of 14,930 that also answered the model question. Use–sentiment correlation is ρ = 0.1865, and experience–sentiment correlation is ρ = 0.0785. Use–experience correlation is near zero (ρ = −0.0077; adjusted p = 0.346). Selection into this smaller sample limits comparison with the primary experience tests. None of these associations identifies a causal effect.
 
-## 4. Limitations, conclusion and next steps
+## 4. Discussion and Limitations
 
-Voluntary participation creates coverage and self-selection bias. Annual respondent pools, question wording, answer lists and routing change. Missing AI-use responses increase from 1.36% in 2023 to 31.45% in 2025; complete cases may select respondents with different behavior. Country samples are small and overlap the global sample. Experience boundaries are approximations, and 2025 work experience is a different construct. Product questions cannot form a common trend. Large n makes modest effects statistically detectable. None of these associations establishes that AI causes a change in experience, sentiment or productivity.
+Increasing adoption coincided with declining favorable sentiment and lower trust by 2025. These sample-level patterns do not establish why attitudes changed or how they influenced individual behavior.
 
-Agent-productivity questions added in 2025 apply to agent users; no general AI-user versus nonuser productivity analysis is made here. Any extension must restrict its claims to that selected agent sample. Respect data attribution and avoid respondent re-identification.
+Interpretation is subject to six principal limitations:
 
-**Conclusion:** Among valid survey respondents, current AI use rose substantially while favorable sentiment and reported trust declined by 2025. Bangladesh respondents reported higher current-use rates each year, with insufficient evidence for a representative national conclusion. Less experienced respondents reported more adoption within each release, with modest association effects. Further work should examine missingness, consistent developer-status subpopulations, alternative experience bands, agent-only outcomes and locally collected Bangladesh evidence.
+1. **Self-selection and coverage:** Voluntary participation limits representation of the broader developer population, including Bangladesh.
+2. **Changing samples and instruments:** Annual respondents, question wording, available choices and routing differ; archive/profile discrepancies add uncertainty about release comparability.
+3. **Missing responses:** AI-use missingness rises from 1.36% in 2023 to 31.45% in 2025. Complete cases may differ systematically from other respondents.
+4. **Measurement choices:** Experience phrases are approximate, the upper range is analyst-defined, and professional coding/work experience and product/model questions measure different constructs.
+5. **Country sample size:** Bangladesh’s small samples and overlap with the global series constrain country comparisons. Binomial intervals cannot remove participation bias.
+6. **Association and selection:** Large samples can detect modest relationships. The study supports no causal or general productivity claim; 2025 agent-productivity questions concern a selected agent-user population and require a separate analysis.
 
-The notebook exports a 203,812 × 133 cleaned CSV, a 133-row dictionary, aggregate tables and 29 figures. All 28 code cells passed in a fresh IPython process and exported values were read back. A sandbox socket restriction prevented the Jupyter kernel integration check; locally use Restart Kernel and Run All before submission.
+## 5. Conclusion and Future Work
 
-## References and attribution
+Current AI use rose substantially among valid survey respondents between 2023 and 2025, while favorable sentiment declined and trust was lower in 2025. Bangladesh respondents reported higher adoption in each release, with insufficient evidence for a representative national estimate. Within-year experience differences were statistically detectable, with modest effects.
 
-- [Official 2023 survey](https://survey.stackoverflow.co/2023/) and [2024 survey](https://survey.stackoverflow.co/2024/).
-- [2025 survey](https://survey.stackoverflow.co/2025/) and [2025 developer profile](https://survey.stackoverflow.co/2025/developers).
-- [2024 developer profile](https://survey.stackoverflow.co/2024/developer-profile).
-- [2025 survey press release](https://stackoverflow.co/company/press/archive/stack-overflow-2025-developer-survey/).
-- [Diving into the results of the 2025 Developer Survey](https://stackoverflow.blog/2025/08/01/diving-into-the-results-of-the-2025-developer-survey/).
-- [Verified official retrospective, 30 September 2026](https://stackoverflow.blog/2026/09/30/getting-ready-for-2026-results-a-look-back-on-developer-survey-findings/). This is a retrospective reference; no 2026 response data are used.
-- [Requested retrospective URL](https://stackoverflow.blog/2026/10/01/a-look-back-before-we-look-forward-a-developer-survey-retrospective) was unavailable during the audit; the verified official page above is used instead.
-- [Official archive and licence notice](https://github.com/StackExchange/Survey/tree/main/packages/archive).
+Further research should examine missingness by respondent characteristics, consistent developer-status subpopulations, alternative experience definitions, agent-only productivity outcomes, and locally collected evidence from Bangladesh. These extensions could clarify the observed patterns while retaining appropriate limits on generalization.
 
-**Attribution:** Stack Overflow Developer Survey, Stack Exchange Inc. Database: ODbL 1.0; individual contents: DbCL 1.0. Preserve attribution and apply ODbL share-alike terms when distributing adapted databases. See `DATA_LICENSE.md`. All numerical findings come from the recorded CSVs and notebook outputs, not mirrors or simulated data.
+## Reproducibility and Data Attribution
+
+The companion notebook documents cleaning, sample sizes, charts and tests, exporting a 203,812 × 133 dataset, complete dictionary and 29 figures. It preserves the raw frame, fixes seed 42 and verifies exports by readback. Setup and execution-check details appear in [README.md](README.md).
+
+**Attribution:** Stack Overflow Developer Survey, Stack Exchange Inc. The database is released under ODbL 1.0 and individual contents under DbCL 1.0. Preserve attribution and apply the relevant share-alike terms when distributing adapted databases. See [DATA_LICENSE.md](DATA_LICENSE.md) and the [publisher’s archive notice](https://github.com/StackExchange/Survey/tree/main/packages/archive). All numerical findings derive from the recorded official CSVs.
+
+## References
+
+1. Stack Overflow. [Developer Survey 2023](https://survey.stackoverflow.co/2023/).
+2. Stack Overflow. [Developer Survey 2024](https://survey.stackoverflow.co/2024/) and [Developer Profile](https://survey.stackoverflow.co/2024/developer-profile).
+3. Stack Overflow. [Developer Survey 2025](https://survey.stackoverflow.co/2025/) and [Developer Profile](https://survey.stackoverflow.co/2025/developers).
+4. Stack Overflow. [2025 Developer Survey press release](https://stackoverflow.co/company/press/archive/stack-overflow-2025-developer-survey/).
+5. Stack Overflow. [Diving into the Results of the 2025 Developer Survey](https://stackoverflow.blog/2025/08/01/diving-into-the-results-of-the-2025-developer-survey/).
+6. Stack Overflow. [Official Survey Archive and Licence Notice](https://github.com/StackExchange/Survey/tree/main/packages/archive).
+7. Stack Overflow. [Developer Survey Retrospective, 30 September 2026](https://stackoverflow.blog/2026/09/30/getting-ready-for-2026-results-a-look-back-on-developer-survey-findings/). Used as historical context; no 2026 response data are included.
+
+**Reference availability note:** The originally supplied [1 October 2026 retrospective URL](https://stackoverflow.blog/2026/10/01/a-look-back-before-we-look-forward-a-developer-survey-retrospective) was unavailable during source verification. Reference 7 provides the verified official retrospective.
