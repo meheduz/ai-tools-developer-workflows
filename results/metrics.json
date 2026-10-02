@@ -1,0 +1,253 @@
+{
+  "adoption": [
+    {
+      "SurveyYear": 2023,
+      "n": 87973,
+      "current_users": 39042.0,
+      "current_use_pct": 44.379525536244074
+    },
+    {
+      "SurveyYear": 2024,
+      "n": 60907,
+      "current_users": 37662.0,
+      "current_use_pct": 61.83525703121152
+    },
+    {
+      "SurveyYear": 2025,
+      "n": 33720,
+      "current_users": 26469.0,
+      "current_use_pct": 78.49644128113879
+    }
+  ],
+  "bangladesh": [
+    {
+      "year": 2023,
+      "sample": "Global",
+      "n": 87973,
+      "users": 39042,
+      "pct": 44.379525536244074,
+      "lower_pct": 44.051469576216356,
+      "upper_pct": 44.70807232592305
+    },
+    {
+      "year": 2023,
+      "sample": "Bangladesh",
+      "n": 490,
+      "users": 284,
+      "pct": 57.95918367346939,
+      "lower_pct": 53.54320614569378,
+      "upper_pct": 62.25133653734988
+    },
+    {
+      "year": 2024,
+      "sample": "Global",
+      "n": 60907,
+      "users": 37662,
+      "pct": 61.83525703121152,
+      "lower_pct": 61.44872071202778,
+      "upper_pct": 62.220300524112496
+    },
+    {
+      "year": 2024,
+      "sample": "Bangladesh",
+      "n": 324,
+      "users": 233,
+      "pct": 71.91358024691358,
+      "lower_pct": 66.7851839863617,
+      "upper_pct": 76.52843489234877
+    },
+    {
+      "year": 2025,
+      "sample": "Global",
+      "n": 33720,
+      "users": 26469,
+      "pct": 78.49644128113879,
+      "lower_pct": 78.05469322536838,
+      "upper_pct": 78.93169731814844
+    },
+    {
+      "year": 2025,
+      "sample": "Bangladesh",
+      "n": 194,
+      "users": 171,
+      "pct": 88.14432989690722,
+      "lower_pct": 82.83867210670823,
+      "upper_pct": 91.96870187961785
+    }
+  ],
+  "sentiment": [
+    {
+      "year": 2023,
+      "n": 61501,
+      "favorable_pct": 76.28006048682136,
+      "indifferent_n": 10147,
+      "without_indifferent_n": 51354,
+      "favorable_without_indifferent_pct": 91.35218288740897
+    },
+    {
+      "year": 2024,
+      "n": 45873,
+      "favorable_pct": 71.97044012817997,
+      "indifferent_n": 8564,
+      "without_indifferent_n": 37309,
+      "favorable_without_indifferent_pct": 88.49071269666837
+    },
+    {
+      "year": 2025,
+      "n": 33467,
+      "favorable_pct": 59.724504736008605,
+      "indifferent_n": 5880,
+      "without_indifferent_n": 27587,
+      "favorable_without_indifferent_pct": 72.45441693551311
+    }
+  ],
+  "trust": [
+    {
+      "year": 2023,
+      "n": 61396,
+      "trust_pct": 42.15095445957392,
+      "distrust_pct": 27.167893673854977
+    },
+    {
+      "year": 2024,
+      "n": 37302,
+      "trust_pct": 43.04058763605168,
+      "distrust_pct": 30.36566403946169
+    },
+    {
+      "year": 2025,
+      "n": 33297,
+      "trust_pct": 32.786737543922875,
+      "distrust_pct": 45.70381716070517
+    }
+  ],
+  "tests": [
+    {
+      "test": "Chi-square 2023",
+      "year": 2023,
+      "n": 66136,
+      "statistic": 1317.0779250742385,
+      "df": 3.0,
+      "p_raw": 2.898929240939796e-285,
+      "min_expected": 769.1178783113584,
+      "effect_name": "Cramer's V",
+      "effect_size": 0.14111941683190557,
+      "p_adjusted": 1.1595716963759184e-284,
+      "reject_H0": true
+    },
+    {
+      "test": "Chi-square 2024",
+      "year": 2024,
+      "n": 50298,
+      "statistic": 1118.1251923417972,
+      "df": 3.0,
+      "p_raw": 4.253756401227507e-242,
+      "min_expected": 1044.4537754980317,
+      "effect_name": "Cramer's V",
+      "effect_size": 0.1490973271710043,
+      "p_adjusted": 1.276126920368252e-241,
+      "reject_H0": true
+    },
+    {
+      "test": "Chi-square 2025",
+      "year": 2025,
+      "n": 31104,
+      "statistic": 221.2927895087828,
+      "df": 2.0,
+      "p_raw": 8.848737578227074e-49,
+      "min_expected": 1447.4125192901236,
+      "effect_name": "Cramer's V",
+      "effect_size": 0.08434813996884075,
+      "p_adjusted": 8.848737578227074e-49,
+      "reject_H0": true
+    },
+    {
+      "test": "Mann\u2013Whitney 2025",
+      "year": 2025,
+      "n": 31104,
+      "statistic": 68032635.0,
+      "df": null,
+      "p_raw": 1.043747088968618e-80,
+      "min_expected": null,
+      "effect_name": "Rank-biserial (users > nonusers)",
+      "effect_size": -0.15274005154311687,
+      "p_adjusted": 2.087494177937236e-80,
+      "reject_H0": true
+    }
+  ],
+  "diagnostics": [
+    {
+      "group": "Current users",
+      "n": 24567,
+      "median": 10.0,
+      "q25": 5.0,
+      "q75": 20.0,
+      "variance": 102.5508660442568,
+      "skewness": 1.044748337440996,
+      "normality_statistic": 3476.626855339802,
+      "normality_p": 0.0
+    },
+    {
+      "group": "Nonusers",
+      "n": 6537,
+      "median": 14.0,
+      "q25": 7.0,
+      "q75": 25.0,
+      "variance": 148.05108080750776,
+      "skewness": 0.7983049007960891,
+      "normality_statistic": 546.5929319873368,
+      "normality_p": 2.0363522053914368e-119
+    }
+  ],
+  "invalid": [
+    {
+      "year": 2023,
+      "failed_parse": 0,
+      "experience_excluded_by_range_or_fraction": 0,
+      "experience_min": 0.5,
+      "experience_max": 51.0
+    },
+    {
+      "year": 2024,
+      "failed_parse": 0,
+      "experience_excluded_by_range_or_fraction": 0,
+      "experience_min": 0.5,
+      "experience_max": 51.0
+    },
+    {
+      "year": 2025,
+      "failed_parse": 0,
+      "experience_excluded_by_range_or_fraction": 42,
+      "experience_min": 1.0,
+      "experience_max": 70.0
+    }
+  ],
+  "sensitivity": {
+    "n": 31122,
+    "rank_biserial": -0.1531304159941077,
+    "p_raw": 3.4752589604040546e-81
+  },
+  "findings": [
+    "Current AI use increased from 44.38% (2023; n=87,973) to 78.50% (2025; n=33,720), a 34.12-point difference among valid answers.",
+    "Bangladesh current-use estimates: 2023 57.96% (n=490), 2024 71.91% (n=324), 2025 88.14% (n=194).",
+    "Favorable sentiment including Indifferent: 2023 76.28% (n=61,501), 2024 71.97% (n=45,873), 2025 59.72% (n=33,467).",
+    "Trust in AI output: 2023 42.15% (n=61,396), 2024 43.04% (n=37,302), 2025 32.79% (n=33,297).",
+    "Experience/use associations: 2023 V=0.1411 (n=66,136), 2024 V=0.1491 (n=50,298), 2025 V=0.0843 (n=31,104).",
+    "2025 user/nonuser work experience: rank-biserial=-0.1527; medians 10.0 vs 14.0 years (n=31,104).",
+    "Most selected primary product/model per year: 2023 GitHub Copilot, 2024 ChatGPT, 2025 openAI GPT (chatbot models). Prompts differ, so this is not a like-for-like product trend."
+  ],
+  "versions": {
+    "numpy": "2.5.3",
+    "pandas": "3.0.6",
+    "scipy": "1.18.1",
+    "statsmodels": "0.15.0",
+    "matplotlib": "3.11.2",
+    "seaborn": "0.13.2"
+  },
+  "export_shape": [
+    203812,
+    133
+  ],
+  "raw_rows": 203812,
+  "raw_unchanged": true
+}
