@@ -20,7 +20,7 @@ AI tool adoption, favorable sentiment and trust measure different aspects of dev
 
 > **Research question:** How has AI tool adoption and sentiment among developers changed from 2023 to 2025, and how does Bangladesh compare with the global sample?
 
-The objective is to describe respondent patterns and assess experience associations while accounting for measurement differences.
+We compare current use, sentiment and trust across releases, then examine how use varies with experience, role and country. The analysis keeps track of question changes so that differences in measurement are not mistaken for changes in behavior.
 
 ## 2. Data and Methodology
 
@@ -40,7 +40,7 @@ The 2025 archive exceeds the profile total of 49,019 by 172 records. Bangladesh 
 
 ### 2.2 Variable Definitions and Harmonization
 
-A schema crosswalk establishes the source question, column availability and observed answer categories before analysis.
+We read the three schemas before selecting variables. The crosswalk records each source question, whether its column exists and which answer categories appear in the files.
 
 - **Current use:** Affirmative `AISelect` answers, including all 2025 frequencies, count as current use. Plans count as noncurrent; missing answers remain missing.
 - **Sentiment:** Favorable combines Favorable and Very favorable. Full distributions retain Indifferent and Unsure; sensitivity excludes Indifferent only.
@@ -52,11 +52,11 @@ Product questions remain separate: 2023 search/development products, 2024 combin
 
 ### 2.3 Data Quality and Analysis Strategy
 
-Whitespace and missing sentinels were standardized without zero imputation. No exact duplicates or duplicate IDs within a release were found. All records were retained; each analysis selects its own complete cases. Missingness is reported for every source column.
+We trimmed category labels and converted blank strings and missing-value labels to missing values. Unanswered questions were not filled with zero. No exact duplicates or duplicate IDs within a release were found. All records were retained; each analysis selects its own complete cases. Missingness is reported for every source column.
 
 Experience phrases below one/above 50 years become 0.5/51. Invalid fractions and values outside the declared 0–70 range are excluded from experience analyses, flagging 42 entries in 2025. Sensitivity assesses this analysis rule’s upper cap.
 
-All results report valid n. Tests use α = 0.05 and prioritize effects. Holm correction covers three annual chi-square tests and one 2025 Mann–Whitney comparison; three exploratory Spearman comparisons form a separate corrected family.
+Every result reports the number of respondents included. Tests use α = 0.05, with effect sizes guiding the interpretation. Holm correction covers three annual chi-square tests and one 2025 Mann–Whitney comparison; three exploratory Spearman comparisons form a separate corrected family.
 
 ## 3. Results
 
@@ -120,7 +120,7 @@ Normality, skewness and variance diagnostics are reported. The rank test require
 
 Increasing adoption coincided with declining favorable sentiment and lower trust by 2025. These sample-level patterns do not establish why attitudes changed or how they influenced individual behavior.
 
-Interpretation is subject to six principal limitations:
+Six limitations shape how these findings should be read:
 
 1. **Self-selection and coverage:** Voluntary participation limits representation of the broader developer population, including Bangladesh.
 2. **Changing samples and instruments:** Annual respondents, question wording, available choices and routing differ; archive/profile discrepancies add uncertainty about release comparability.

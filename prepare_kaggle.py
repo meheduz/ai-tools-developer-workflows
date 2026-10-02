@@ -50,17 +50,34 @@ def prepare(username, public=False):
         for path in sorted((ROOT / 'results').iterdir()):
             if path.is_file() and path.suffix in {'.csv', '.json', '.png'}:
                 archive.write(path, f'results/{path.name}')
-    description = '''# AI Tools in Developers' Workflows — Project 44
+    description = f'''# AI Tools in Developers' Workflows — Project 44
 
-Official Stack Overflow Developer Survey releases for **2023, 2024 and 2025**,
-with the project notebook, report, downloader, data manifest and saved results.
-Prepared by **Mustari Ifthe (2023331050)** and
-**Md. Meheduz Zaman (2023331064)**.
+How did developers' use of AI tools change between 2023 and 2025, and how did
+their attitudes change alongside it? This project examines current use,
+sentiment and trust in the official Stack Overflow Developer Surveys. We also
+compare experience groups, developer roles and Bangladesh respondents with
+the global sample.
 
-## Provenance and file layout
-The six year-prefixed CSVs are byte-for-byte copies of the official response and
-schema files. `manifest.json` records the original URLs, acquisition date, sizes
-and SHA-256 hashes. No Kaggle mirror or 2026 survey responses were used.
+**Authors:** Mustari Ifthe (2023331050) and Md. Meheduz Zaman (2023331064).
+
+### A few findings
+
+- Current use rose from **44.38%** in 2023 (n=87,973) to **78.50%** in 2025
+  (n=33,720), using the same definition of current use throughout.
+- Favorable sentiment fell from **76.28%** (n=61,501) to **59.72%** (n=33,467).
+- Bangladesh respondents reported higher use in each release. The valid samples
+  were **490, 324 and 194**, so these comparisons remain descriptive.
+
+The [companion notebook](https://www.kaggle.com/code/{username}/{NOTEBOOK_SLUG})
+explains the definitions, charts and statistical comparisons. `report.md`
+provides a shorter account of the methods, findings and limitations.
+
+## About the files
+
+Each survey release has a response file and a schema. The six year-prefixed CSVs
+are unchanged copies from the publisher's archive. `manifest.json` records their
+original URLs, acquisition date, sizes and SHA-256 hashes. Only the 2023–2025
+releases are used.
 
 | Release | Response rows | Response columns |
 |---|---:|---:|
@@ -69,12 +86,13 @@ and SHA-256 hashes. No Kaggle mirror or 2026 survey responses were used.
 | 2025 | 49,191 | 172 |
 
 The 2025 official archive differs from the website's 49,019 profile responses.
-The notebook documents this discrepancy and changing question wording. Original
-missing values are preserved; no synthetic responses are included.
+We keep the recorded archive release and explain this difference in the notebook.
+Missing answers stay missing, and each analysis reports its own sample size.
 
-`analysis.ipynb` is the executed local notebook. The separate Kaggle notebook
-adds an input-mount setup cell. `saved-results.zip` contains the aggregate tables
-and charts; the Kaggle run regenerates cleaned data and results as notebook outputs.
+`analysis.ipynb` is the executed local notebook. The Kaggle version includes a
+short setup cell for the attached data. The saved-results folder contains the
+aggregate tables and charts. Running the Kaggle notebook regenerates these
+results, the cleaned dataset and its data dictionary.
 
 ## Publisher and licence
 Contains information from the **Stack Overflow Developer Survey, Stack Exchange
@@ -89,10 +107,11 @@ databases. The data licence does not assign a software licence to project code.
 - [ODbL 1.0](https://opendatacommons.org/licenses/odbl/1-0/)
 - [DbCL 1.0](https://opendatacommons.org/licenses/dbcl/1-0/)
 
-## Interpretation
-These are self-selected survey respondents, not a representative sample of all
-developers. Country comparisons are descriptive. Experience and product questions
-change across releases, and statistical associations do not establish causation.
+## Reading the results
+
+The surveys are voluntary, so the findings describe respondents rather than all
+developers. Some experience and product questions change across releases. We
+explain those differences before comparing results and avoid causal claims.
 '''
     write_json(dataset / 'dataset-metadata.json', {
         'id': f'{username}/{DATASET_SLUG}',
@@ -109,11 +128,11 @@ change across releases, and statistical associations do not establish causation.
     bootstrap = (ROOT / 'kaggle' / 'bootstrap.py').read_text()
     nb['cells'][4:4] = [
         {'cell_type': 'markdown', 'id': 'kaggle-runtime-note', 'metadata': {}, 'source': [
-            '### Kaggle execution setup\n',
-            'The attached dataset contains the verified official releases. This cell '
-            'connects read-only inputs to the relative project paths and directs generated '
-            'CSV files and charts to `/kaggle/working/ai-tools-developer-workflows/`. '
-            'Internet and GPU are unnecessary.\n']},
+            '### Running this notebook on Kaggle\n',
+            'The three survey releases are attached as a dataset. The setup below '
+            'makes those files available to the analysis and saves generated tables '
+            'and charts in `/kaggle/working/ai-tools-developer-workflows/`. '
+            'The notebook runs without internet access or a GPU.\n']},
         {'cell_type': 'code', 'id': 'kaggle-runtime-setup', 'metadata': {},
          'source': bootstrap.splitlines(keepends=True), 'outputs': [], 'execution_count': None},
     ]
@@ -123,7 +142,7 @@ change across releases, and statistical associations do not establish causation.
     write_json(notebook / 'analysis.ipynb', nb)
     write_json(notebook / 'kernel-metadata.json', {
         'id': f'{username}/{NOTEBOOK_SLUG}',
-        'title': 'AI Tools in Developers Workflows',
+        'title': "AI Tools in Developers' Workflows",
         'code_file': 'analysis.ipynb', 'language': 'python', 'kernel_type': 'notebook',
         'is_private': not public, 'enable_gpu': False, 'enable_internet': False,
         'dataset_sources': [f'{username}/{DATASET_SLUG}'],
