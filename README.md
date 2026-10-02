@@ -15,7 +15,6 @@ Analysis of the official Stack Overflow Developer Surveys for **2023, 2024 and 2
 ai-tools-developer-workflows/
 ├── analysis.ipynb          # Executed analysis, explanations, charts and tests
 ├── report.md               # Short research report
-├── DATA_LICENSE.md         # Data attribution and redistribution terms
 ├── requirements.txt        # Pinned direct dependencies
 ├── download_data.py        # Official downloader with SHA-256 verification
 ├── audit_project.py        # Independent checks of saved results and exports
@@ -74,6 +73,19 @@ A socket restriction in the audit environment prevented launching a Jupyter kern
 
 ## Licence and responsible use
 
-Attribution: **Stack Overflow Developer Survey, Stack Exchange Inc.** The official archive specifies **ODbL 1.0** for the database and **DbCL 1.0** for individual contents. Preserve attribution and follow the applicable share-alike terms when distributing adapted databases, including cleaned respondent exports. See [DATA_LICENSE.md](DATA_LICENSE.md) and the [publisher's licence notice](https://github.com/StackExchange/Survey/tree/main/packages/archive).
+**Data source and attribution:** Stack Overflow Developer Survey 2023, 2024 and 2025, published by **Stack Exchange Inc. / Stack Overflow**.
+
+The [publisher's official archive and licence notice](https://github.com/StackExchange/Survey/tree/main/packages/archive) specifies the following terms, including for the 2023 release:
+
+- **Database:** [Open Database License (ODbL) 1.0](https://opendatacommons.org/licenses/odbl/1-0/).
+- **Individual contents:** [Database Contents License (DbCL) 1.0](https://opendatacommons.org/licenses/dbcl/1-0/).
+
+Suggested attribution:
+
+> Contains information from the Stack Overflow Developer Survey, Stack Exchange Inc., made available under ODbL 1.0; individual contents under DbCL 1.0.
+
+The raw CSVs retain their original values. The generated `data/processed/cleaned_survey.csv` is an adapted database: it standardizes missing values, harmonizes selected variables, validates experience values and adds indicators. Preserve attribution and notices, and follow the applicable ODbL share-alike requirements when redistributing adapted databases. Exact sources and transformations are documented in `data/manifest.json` and `analysis.ipynb`.
+
+These terms apply to the survey data; this notice does not assign a software licence to the project's code.
 
 Only official sources are used; no Kaggle data or 2026 survey results are included. Country comparisons are descriptive, Bangladesh is not subdivided into small cells, and no general AI-to-productivity causal claim is made. The optional predictive baseline is omitted because instructor approval has not been supplied.
