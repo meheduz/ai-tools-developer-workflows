@@ -15,7 +15,6 @@ Analysis of the official Stack Overflow Developer Surveys for **2023, 2024 and 2
 ai-tools-developer-workflows/
 ├── analysis.ipynb          # Executed analysis, explanations, charts and tests
 ├── report.md               # Short research report
-├── AUDIT.md                # Findings, fixes, validation and remaining checks
 ├── DATA_LICENSE.md         # Data attribution and redistribution terms
 ├── requirements.txt        # Pinned direct dependencies
 ├── download_data.py        # Official downloader with SHA-256 verification
@@ -69,7 +68,7 @@ The schema crosswalk exposes important differences: 2023 trust is `AIBen`, later
 
 ## Validation status
 
-All 28 code cells executed sequentially in a fresh IPython process, with figures and rich outputs saved. Independent checks recompute adoption, sentiment, tool counts, chi-square statistics and the Mann–Whitney comparison from raw files, and check exported indicators and missingness. See [AUDIT.md](AUDIT.md).
+All 28 code cells executed sequentially in a fresh IPython process, with figures and rich outputs saved. Independent checks recompute adoption, sentiment, tool counts, chi-square statistics and the Mann–Whitney comparison from raw files, and check exported indicators and missingness.
 
 A socket restriction in the audit environment prevented launching a Jupyter kernel. The fresh-process run checks computation; **Restart Kernel and Run All** in your local Jupyter remains the final kernel integration check.
 
