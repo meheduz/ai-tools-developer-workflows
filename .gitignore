@@ -12,3 +12,4 @@ data/raw/*/survey_results_public.csv
 # Reproducible notebook exports
 data/processed/*.csv
 .DS_Store
+.kaggle-build/

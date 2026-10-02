@@ -18,6 +18,8 @@ ai-tools-developer-workflows/
 ├── requirements.txt        # Pinned direct dependencies
 ├── download_data.py        # Official downloader with SHA-256 verification
 ├── audit_project.py        # Independent checks of saved results and exports
+├── prepare_kaggle.py       # Builds the Kaggle dataset and notebook upload folders
+├── kaggle/bootstrap.py     # Connects Kaggle inputs to relative project paths
 ├── data/
 │   ├── manifest.json        # Exact sources, download date, sizes and checksums
 │   ├── raw/<year>/          # Official schemas and local public response files
@@ -51,6 +53,45 @@ After running the notebook, check the results independently:
 python audit_project.py
 ```
 
+## Run on Kaggle
+
+Uploaded under **mdmeheduzzaman**, with private visibility:
+
+- [Kaggle notebook](https://www.kaggle.com/code/mdmeheduzzaman/ai-tools-in-developers-workflows)
+- [Kaggle dataset and project files](https://www.kaggle.com/datasets/mdmeheduzzaman/ai-tools-developer-workflows-2023-2025)
+
+The Kaggle notebook uses an attached copy of the six official CSVs. A setup cell
+links read-only inputs to the notebook's relative paths and writes generated
+tables, figures and cleaned data to
+`/kaggle/working/ai-tools-developer-workflows/`. Internet and GPU are disabled.
+The original local notebook is preserved; the upload version is generated from it.
+
+To prepare uploads after changing the analysis, run:
+
+```zsh
+python prepare_kaggle.py --username mdmeheduzzaman
+```
+
+This verifies all six source checksums and creates `.kaggle-build/dataset/` and
+`.kaggle-build/notebook/`. The dataset includes official CSVs, schemas, provenance,
+the local notebook, report, helper scripts and a saved-results archive. Temporary
+upload files are ignored by Git. Credentials, virtual environments and Git history
+are excluded.
+
+With the [Kaggle CLI](https://github.com/Kaggle/kaggle-cli) installed and authenticated,
+create the private dataset once, then upload and execute the notebook:
+
+```zsh
+kaggle datasets create -p .kaggle-build/dataset --keep-tabular
+kaggle kernels push -p .kaggle-build/notebook
+kaggle kernels status mdmeheduzzaman/ai-tools-in-developers-workflows
+```
+
+For subsequent data or project updates, replace `datasets create` with
+`kaggle datasets version -p .kaggle-build/dataset -m "Update project files" --keep-tabular`.
+The notebook is private by default. Use `--public` when preparing a public notebook;
+dataset visibility is controlled separately in Kaggle's sharing settings.
+
 ## Data and definitions
 
 | Release | Local response-file shape | Valid AI-use answers | Current-use rate |
@@ -67,9 +108,11 @@ The schema crosswalk exposes important differences: 2023 trust is `AIBen`, later
 
 ## Validation status
 
-All 28 code cells executed sequentially in a fresh IPython process, with figures and rich outputs saved. Independent checks recompute adoption, sentiment, tool counts, chi-square statistics and the Mann–Whitney comparison from raw files, and check exported indicators and missingness.
+All 28 analysis code cells executed sequentially in a fresh local IPython process, with figures and rich outputs saved. Independent checks recompute adoption, sentiment, tool counts, chi-square statistics and the Mann–Whitney comparison from raw files, and check exported indicators and missingness.
 
-A socket restriction in the audit environment prevented launching a Jupyter kernel. The fresh-process run checks computation; **Restart Kernel and Run All** in your local Jupyter remains the final kernel integration check.
+**Kaggle notebook version 1 completed successfully.** Its additional setup cell connects the attached dataset; all six raw-file checksums passed with internet disabled. The run retained all **203,812** records and regenerated the **203,812 × 133** cleaned export. Adoption, Bangladesh and sentiment results match the local outputs exactly; statistical results agree within a relative tolerance of `1e-9`, with only floating-point rounding differences. The data dictionaries match.
+
+Kaggle used **Python 3.13.15**, pandas **2.3.3**, NumPy **2.1.3**, SciPy **1.16.3**, statsmodels **0.15.0**, Matplotlib **3.10.0** and seaborn **0.13.2**. These differ from the pinned local environment; each run records its actual library versions. A local Jupyter **Restart Kernel and Run All** remains a useful check after future edits.
 
 ## Licence and responsible use
 
@@ -88,4 +131,4 @@ The raw CSVs retain their original values. The generated `data/processed/cleaned
 
 These terms apply to the survey data; this notice does not assign a software licence to the project's code.
 
-Only official sources are used; no Kaggle data or 2026 survey results are included. Country comparisons are descriptive, Bangladesh is not subdivided into small cells, and no general AI-to-productivity causal claim is made. The optional predictive baseline is omitted because instructor approval has not been supplied.
+Only official sources are used; no third-party mirrors or 2026 survey results are included. Country comparisons are descriptive, Bangladesh is not subdivided into small cells, and no general AI-to-productivity causal claim is made. The optional predictive baseline is omitted because instructor approval has not been supplied.
