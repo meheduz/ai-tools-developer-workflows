@@ -18,7 +18,7 @@ This study examines AI tool adoption, sentiment and trust in 203,812 records fro
 
 AI tool adoption, favorable sentiment and trust measure different aspects of developers’ workflows. This study examines each separately, alongside variation by experience, role and country.
 
-> **Research question:** How has AI tool adoption and sentiment among developers changed from 2023 to 2025, and how does Bangladesh compare with the global sample?
+> **Research question:** How have current AI use and sentiment among Stack Overflow Developer Survey respondents differed from 2023 to 2025, and how does Bangladesh compare with the global sample?
 
 We compare current use, sentiment and trust across releases, then examine how use varies with experience, role and country. The analysis keeps track of question changes so that differences in measurement are not mistaken for changes in behavior.
 
@@ -44,6 +44,7 @@ We read the three schemas before selecting variables. The crosswalk records each
 
 - **Current use:** Affirmative `AISelect` answers, including all 2025 frequencies, count as current use. Plans count as noncurrent; missing answers remain missing.
 - **Sentiment:** Favorable combines Favorable and Very favorable. Full distributions retain Indifferent and Unsure; sensitivity excludes Indifferent only.
+- **Favorable indicator:** `favorable_sentiment` records those two favorable categories as 1 and other valid responses as 0, including Indifferent and Unsure. Zero means not classified as favorable, rather than unfavorable. Unanswered sentiment remains missing; the valid denominator is unchanged.
 - **Trust:** Use `AIBen` in 2023 and `AIAcc` in 2024–2025. The 2023 `AIAcc` question measures anticipated benefits.
 - **Experience:** Use professional coding years (`YearsCodePro`) in 2023–2024 and broader work experience (`WorkExp`) in 2025. Bands are under one, 1–5, 6–10 and 11+ years, interpreted within release. The 2025 blank-zero instruction prevents distinguishing zero from nonresponse.
 - **Roles and selections:** `DevType` is one main role. Semicolon selections receive question/year-specific indicators; skipped questions remain missing.
@@ -72,7 +73,7 @@ Every result reports the number of respondents included. Tests use α = 0.05, wi
 
 Current use increased by **34.12 percentage points**. Global includes all valid AI-use answers; Bangladesh additionally requires country. Bangladesh is included globally, so the series overlap.
 
-Bangladesh’s adoption exceeded the global rate each year. Its 2025 model-based 95% Wilson interval is 82.84%–91.97%, assuming independent-binomial responses without correcting participation bias. Country comparisons remain descriptive, without small Bangladesh subgroups.
+Current use among Bangladesh respondents exceeded the global sample rate each year. Its 2025 model-based 95% Wilson interval is 82.84%–91.97%, assuming independent-binomial responses without correcting participation bias. Country comparisons remain descriptive, without small Bangladesh subgroups. Annual Global Wilson intervals are also available in the notebook and `results/adoption_summary.csv`.
 
 ### 3.2 Sentiment and Trust
 
@@ -108,36 +109,52 @@ GitHub Copilot led the 2023 development-product question at 85.23% (22,078/25,90
 | 2024 | 50,298 | 0.1491 | 1,118.125 (3) | 1,044.45 | 1.28 × 10⁻²⁴¹ |
 | 2025 | 31,104 | 0.0843 | 221.293 (2) | 1,447.41 | 8.85 × 10⁻⁴⁹ |
 
-Independence is rejected each year, with modest effects despite small p-values. Changed wording and samples prevent interpreting the smaller 2025 V as a weakening population relationship.
+Independence is rejected each year; the numerical V values quantify the associations without assigning universal magnitude labels. Statistical significance alone does not establish practical importance. Changed wording and samples prevent interpreting the smaller 2025 V as a weakening population relationship.
 
-**Work experience among users and nonusers.** H₀ states that their 2025 work-experience distributions are equal; H₁ states that they differ. The Mann–Whitney comparison yields **rank-biserial = −0.1527**, U = 68,032,635 and adjusted p = 2.09 × 10⁻⁸⁰. Users report a median of 10 years (n = 24,567), compared with 14 years among nonusers (n = 6,537). The negative effect indicates that users tend to report fewer years.
+**Work experience among users and nonusers.** H₀ states that their 2025 work-experience distributions are equal; H₁ states that they differ. The Mann–Whitney comparison yields **rank-biserial = −0.1527**, U = 68,032,635 and adjusted p = 2.09 × 10⁻⁸⁰. Users report a median of 10 years (IQR 5–20; n = 24,567), compared with 14 years among nonusers (IQR 7–25; n = 6,537). The negative effect indicates that users tend to report fewer years.
 
 Normality, skewness and variance diagnostics are reported. The rank test requires neither normality nor equal variance, accounts for ties, and supports a rank/distribution interpretation. Removing the cap gives n = 31,122 and rank-biserial = −0.1531, preserving the substantive result.
 
-**Exploratory correlations.** Spearman’s rank method accommodates ordinal sentiment and skewed experience. It uses one 2025 complete-case sample of 14,930 that also answered the model question. Use–sentiment correlation is ρ = 0.1865, and experience–sentiment correlation is ρ = 0.0785. Use–experience correlation is near zero (ρ = −0.0077; adjusted p = 0.346). Selection into this smaller sample limits comparison with the primary experience tests. None of these associations identifies a causal effect.
+**Exploratory correlations.** Spearman’s rank method describes monotonic associations involving ordinal sentiment, skewed/discrete experience and discrete selection counts. It uses one 2025 complete-case sample of 14,930 that also answered the model question. Use–sentiment correlation is positive (ρ = 0.1865), and experience–sentiment correlation is positive and close to zero (ρ = 0.0785). Use–experience correlation is near-zero negative (ρ = −0.0077; adjusted p = 0.346). Selection into this smaller sample limits comparison with the primary experience tests. None of these associations identifies a causal effect.
+
+### 3.5 Focused Robustness Checks
+
+**Table 5. Disjoint geographic comparison: current use (valid n; 95% Wilson interval)**
+
+| Release | Bangladesh | Rest of World |
+|---|---:|---:|
+| 2023 | 57.96% (490; 53.54–62.25%) | 44.30% (87,483; 43.97–44.63%) |
+| 2024 | 71.91% (324; 66.79–76.53%) | 61.03% (58,119; 60.63–61.43%) |
+| 2025 | 88.14% (194; 82.84–91.97%) | 78.44% (33,526; 78.00–78.88%) |
+
+The higher Bangladesh estimate persists in all releases. Rest of World excludes Bangladesh and requires country. In 2024, this also excludes 2,464 valid AI answers with missing country; its difference from the required Global estimate is therefore not solely due to removing Bangladesh.
+
+**Experience bands (2025):** Main bands (1–5, 6–10, 11+): 83.07% → 81.92% → 75.71%; V=0.0843; Alternative bands (1–4, 5–9, 10+): 83.28% → 82.14% → 76.36%; V=0.0772. Both use n=31,104; the descending direction is **STABLE**, while exact rates and V vary. The alternative assigns 5 to the middle group and 10 to the highest; it approximates the [publisher’s overlapping career labels](https://survey.stackoverflow.co/2025/ai), not an undocumented endpoint convention.
+
+**Complete cases:** From 49,191 records, 15,076 answered all four correlation source questions and 14,930 have valid derived values. Included versus incomplete records differ on observed characteristics: age 18–24 is 12.36% versus 21.49%; current use among valid AI answers is 96.85% versus 63.91% (n=14,930/18,790). This supports a conditional correlation interpretation; it does not identify the missingness mechanism. No new country test or correlation sensitivity family is added.
 
 ## 4. Discussion and Limitations
 
 Increasing adoption coincided with declining favorable sentiment and lower trust by 2025. These sample-level patterns do not establish why attitudes changed or how they influenced individual behavior.
 
-Six limitations shape how these findings should be read:
+The banding check tests a **REDUCIBLE** analysis choice. Country overlap, complete-case selection and changing questions are **PARTIALLY REDUCIBLE**: diagnostics expose their effects without eliminating selection or construct differences. Self-selection and the repeated cross-sectional design are **INTRINSIC** limitations. Six limitations remain:
 
-1. **Self-selection and coverage:** Voluntary participation limits representation of the broader developer population, including Bangladesh.
+1. **Self-selection and coverage:** Recruitment through Stack Overflow channels and voluntary participation limit representation of the broader developer population, including Bangladesh. Increasing n does not remove this selection mechanism; no population weights are invented. [2024 methodology](https://survey.stackoverflow.co/2024/methodology); [2025 methodology](https://survey.stackoverflow.co/2025/methodology).
 2. **Changing samples and instruments:** Annual respondents, question wording, available choices and routing differ; archive/profile discrepancies add uncertainty about release comparability.
 3. **Missing responses:** AI-use missingness rises from 1.36% in 2023 to 31.45% in 2025. Complete cases may differ systematically from other respondents.
 4. **Measurement choices:** Experience phrases are approximate, the upper range is analyst-defined, and professional coding/work experience and product/model questions measure different constructs.
 5. **Country sample size:** Bangladesh’s small samples and overlap with the global series constrain country comparisons. Binomial intervals cannot remove participation bias.
-6. **Association and selection:** Large samples can detect modest relationships. The study supports no causal or general productivity claim; 2025 agent-productivity questions concern a selected agent-user population and require a separate analysis.
+6. **Association and selection:** Large samples can detect limited differences. Effect sizes reduce overinterpretation of significance, but practical importance still requires context. The study supports no causal or general productivity claim. Nonmissing 2025 agent-impact answers do not by themselves establish agent use; any future agent-user productivity analysis needs a verified agent-use restriction and routing review.
 
 ## 5. Conclusion and Future Work
 
-Current AI use rose substantially among valid survey respondents between 2023 and 2025, while favorable sentiment declined and trust was lower in 2025. Bangladesh respondents reported higher adoption in each release, with insufficient evidence for a representative national estimate. Within-year experience differences were statistically detectable, with modest effects.
+Current AI use rose substantially among valid survey respondents between 2023 and 2025, while favorable sentiment declined and trust was lower in 2025. Bangladesh respondents reported higher current use in each release, with insufficient evidence for a representative national estimate. Within-year experience associations were statistically detectable, with Cramér’s V of 0.1411, 0.1491 and 0.0843. The robustness checks preserve the country direction and descending 2025 experience pattern, while exposing selection into the correlation subset.
 
-Further research should examine missingness by respondent characteristics, consistent developer-status subpopulations, alternative experience definitions, agent-only productivity outcomes, and locally collected evidence from Bangladesh. These extensions could clarify the observed patterns while retaining appropriate limits on generalization.
+Further research could extend the observed missingness profiles, examine consistent developer-status subpopulations and alternative experience definitions in other releases, and study agent-only productivity or locally collected evidence from Bangladesh. These extensions could clarify the patterns while retaining appropriate limits on generalization.
 
 ## Reproducibility and Data Attribution
 
-The companion notebook documents cleaning, sample sizes, charts and tests, exporting a 203,812 × 133 dataset, complete dictionary and 29 figures. It preserves the raw frame, fixes seed 42 and verifies exports by readback. Setup and execution-check details appear in [README.md](README.md).
+The companion notebook follows Sections 0–16 of the lab handbook, exporting a 203,812 × 134 dataset, complete dictionary and 29 figures. It retains all 63 tool/model indicators, 49 main-role indicators and five response-status flags, with a feature-family inventory and 15 computational checks. The revised notebook executed in a fresh Jupyter kernel. It preserves the raw frame, fixes seed 42 and verifies exports by readback. Setup and execution-check details appear in [README.md](README.md).
 
 **Attribution:** Stack Overflow Developer Survey, Stack Exchange Inc. The database is released under ODbL 1.0 and individual contents under DbCL 1.0. Preserve attribution and apply the relevant share-alike terms when distributing adapted databases. See [DATA_LICENSE.md](DATA_LICENSE.md) and the [publisher’s archive notice](https://github.com/StackExchange/Survey/tree/main/packages/archive). All numerical findings derive from the recorded official CSVs.
 

@@ -4,19 +4,25 @@
       "SurveyYear": 2023,
       "n": 87973,
       "current_users": 39042.0,
-      "current_use_pct": 44.379525536244074
+      "current_use_pct": 44.379525536244074,
+      "lower_pct": 44.051469576216356,
+      "upper_pct": 44.70807232592305
     },
     {
       "SurveyYear": 2024,
       "n": 60907,
       "current_users": 37662.0,
-      "current_use_pct": 61.83525703121152
+      "current_use_pct": 61.83525703121152,
+      "lower_pct": 61.44872071202778,
+      "upper_pct": 62.220300524112496
     },
     {
       "SurveyYear": 2025,
       "n": 33720,
       "current_users": 26469.0,
-      "current_use_pct": 78.49644128113879
+      "current_use_pct": 78.49644128113879,
+      "lower_pct": 78.05469322536838,
+      "upper_pct": 78.93169731814844
     }
   ],
   "bangladesh": [
@@ -230,11 +236,11 @@
   "findings": [
     "Current AI use increased from 44.38% (2023; n=87,973) to 78.50% (2025; n=33,720), a 34.12-point difference among valid answers.",
     "Bangladesh current-use estimates: 2023 57.96% (n=490), 2024 71.91% (n=324), 2025 88.14% (n=194).",
-    "Favorable sentiment including Indifferent: 2023 76.28% (n=61,501), 2024 71.97% (n=45,873), 2025 59.72% (n=33,467).",
-    "Trust in AI output: 2023 42.15% (n=61,396), 2024 43.04% (n=37,302), 2025 32.79% (n=33,297).",
+    "Favorable sentiment with Indifferent and Unsure retained in the denominator: 2023 76.28% (n=61,501), 2024 71.97% (n=45,873), 2025 59.72% (n=33,467). Trust in AI output: 2023 42.15% (n=61,396), 2024 43.04% (n=37,302), 2025 32.79% (n=33,297).",
     "Experience/use associations: 2023 V=0.1411 (n=66,136), 2024 V=0.1491 (n=50,298), 2025 V=0.0843 (n=31,104).",
     "2025 user/nonuser work experience: rank-biserial=-0.1527; medians 10.0 vs 14.0 years (n=31,104).",
-    "Most selected primary product/model per year: 2023 GitHub Copilot, 2024 ChatGPT, 2025 openAI GPT (chatbot models). Prompts differ, so this is not a like-for-like product trend."
+    "Most selected primary product/model per year: 2023 GitHub Copilot: 85.23% (22,078/25,904 question answerers), 2024 ChatGPT: 85.31% (37,923/44,453 question answerers), 2025 openAI GPT (chatbot models): 82.45% (13,424/16,281 question answerers). Prompts differ, so this is not a like-for-like product trend.",
+    "Among the ten largest 2025 roles, Developer, front-end: 86.86% (n=1,484); Developer, embedded applications or devices: 65.16% (n=1,016)."
   ],
   "versions": {
     "numpy": "2.5.3",
@@ -246,7 +252,7 @@
   },
   "export_shape": [
     203812,
-    133
+    134
   ],
   "raw_rows": 203812,
   "raw_unchanged": true

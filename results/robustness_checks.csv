@@ -1,0 +1,16 @@
+analysis,year,group,n,users,pct,lower_pct,upper_pct,eligible_n,missing_country_among_AI_answers,outcome,band,analysis_n,chi_square,df,min_expected,cramers_v
+Geography,2023,Bangladesh,490,284.0,57.95918367346939,53.54320614569378,62.25133653734988,87973.0,0.0,Higher Bangladesh estimate in every release,,,,,,
+Geography,2023,Rest of World,87483,38758.0,44.303464673136496,43.97455273349872,44.63287687099628,87973.0,0.0,Higher Bangladesh estimate in every release,,,,,,
+Geography,2024,Bangladesh,324,233.0,71.91358024691358,66.7851839863617,76.52843489234877,58443.0,2464.0,Higher Bangladesh estimate in every release,,,,,,
+Geography,2024,Rest of World,58119,35471.0,61.03167638810028,60.63447857176247,61.42741599181445,58443.0,2464.0,Higher Bangladesh estimate in every release,,,,,,
+Geography,2025,Bangladesh,194,171.0,88.14432989690722,82.83867210670823,91.96870187961785,33720.0,0.0,Higher Bangladesh estimate in every release,,,,,,
+Geography,2025,Rest of World,33526,26298.0,78.44061325538388,77.99717219979976,78.87753752234613,33720.0,0.0,Higher Bangladesh estimate in every release,,,,,,
+Experience banding,2025,Main,8032,6672.0,83.06772908366534,,,,,STABLE,1–5 years,31104.0,221.2927895087828,2.0,1447.4125192901236,0.08434813996884075
+Experience banding,2025,Main,6887,5642.0,81.92246261071584,,,,,STABLE,6–10 years,31104.0,221.2927895087828,2.0,1447.4125192901236,0.08434813996884075
+Experience banding,2025,Main,16185,12253.0,75.70590052517764,,,,,STABLE,11+ years,31104.0,221.2927895087828,2.0,1447.4125192901236,0.08434813996884075
+Experience banding,2025,Alternative,6326,5268.0,83.27537148276953,,,,,STABLE,1–4 years,31104.0,185.33737726624986,2.0,1329.5094521604938,0.07719219399895785
+Experience banding,2025,Alternative,6562,5390.0,82.13959158793051,,,,,STABLE,5–9 years,31104.0,185.33737726624986,2.0,1329.5094521604938,0.07719219399895785
+Experience banding,2025,Alternative,18216,13909.0,76.35595081247256,,,,,STABLE,10+ years,31104.0,185.33737726624986,2.0,1329.5094521604938,0.07719219399895785
+Correlation eligibility,2025,Total survey records,49191,,,,,,,,,,,,,
+Correlation eligibility,2025,Four source questions nonmissing,15076,,,,,,,,,,,,,
+Correlation eligibility,2025,Analytical complete cases,14930,,,,,,,,,,,,,

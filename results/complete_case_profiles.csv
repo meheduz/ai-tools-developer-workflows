@@ -1,0 +1,25 @@
+year,analysis,group,variable,category,count,denominator,pct
+2025,Correlation,Included / complete,Age band,25-34 years old,5478,14930,36.69122572002679
+2025,Correlation,Included / complete,Age band,35-44 years old,4664,14930,31.239115874079037
+2025,Correlation,Included / complete,Age band,45-54 years old,2079,14930,13.924983255190892
+2025,Correlation,Included / complete,Age band,18-24 years old,1846,14930,12.364367046215673
+2025,Correlation,Included / complete,Age band,55-64 years old,676,14930,4.527796383121232
+2025,Correlation,Included / complete,Age band,65 years or older,161,14930,1.0783657066309444
+2025,Correlation,Included / complete,Age band,Missing/refused,26,14930,0.174146014735432
+2025,Correlation,Included / complete,Country availability,Available,14930,14930,100.0
+2025,Correlation,Included / complete,Role availability,Available,14930,14930,100.0
+2025,Correlation,Included / complete,AI use among valid answers,Current user,14460,14930,96.85197588747488
+2025,Correlation,Included / complete,AI use among valid answers,Not current user,470,14930,3.148024112525117
+2025,Correlation,Excluded / incomplete,Age band,25-34 years old,11041,34261,32.226146347158576
+2025,Correlation,Excluded / incomplete,Age band,35-44 years old,8577,34261,25.034295554712354
+2025,Correlation,Excluded / incomplete,Age band,18-24 years old,7364,34261,21.493826800151776
+2025,Correlation,Excluded / incomplete,Age band,45-54 years old,4196,34261,12.247161495578062
+2025,Correlation,Excluded / incomplete,Age band,55-64 years old,1950,34261,5.691602696944047
+2025,Correlation,Excluded / incomplete,Age band,65 years or older,781,34261,2.279559849391436
+2025,Correlation,Excluded / incomplete,Age band,Missing/refused,352,34261,1.027407256063746
+2025,Correlation,Excluded / incomplete,Country availability,Available,20507,34261,59.85522897755465
+2025,Correlation,Excluded / incomplete,Country availability,Missing,13754,34261,40.14477102244535
+2025,Correlation,Excluded / incomplete,Role availability,Available,28750,34261,83.91465514725198
+2025,Correlation,Excluded / incomplete,Role availability,Missing,5511,34261,16.085344852748023
+2025,Correlation,Excluded / incomplete,AI use among valid answers,Current user,12009,18790,63.91165513571048
+2025,Correlation,Excluded / incomplete,AI use among valid answers,Not current user,6781,18790,36.08834486428952

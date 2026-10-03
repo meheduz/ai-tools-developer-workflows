@@ -1,0 +1,14 @@
+Quality dimension,Check,Result,Analytical consequence
+Completeness,2023: AISelect missing,"1,211/89,184 (1.36%)",Use item-specific complete cases; never infer No from missing
+Uniqueness,2023: duplicate rows / IDs / missing IDs,0 / 0 / 0,No record removals; IDs are unique only within release
+Validity,2023: YearsCodePro range/fraction / failed parse,0 / 0,Set invalid derived experience to NA; preserve source and record
+Consistency,2023: source AI labels / semicolon role rows,All observed AI labels mapped / 0,Validate exact maps; DevType uses single-choice indicators
+Completeness,2024: AISelect missing,"4,530/65,437 (6.92%)",Use item-specific complete cases; never infer No from missing
+Uniqueness,2024: duplicate rows / IDs / missing IDs,0 / 0 / 0,No record removals; IDs are unique only within release
+Validity,2024: YearsCodePro range/fraction / failed parse,0 / 0,Set invalid derived experience to NA; preserve source and record
+Consistency,2024: source AI labels / semicolon role rows,All observed AI labels mapped / 0,Validate exact maps; DevType uses single-choice indicators
+Completeness,2025: AISelect missing,"15,471/49,191 (31.45%)",Use item-specific complete cases; never infer No from missing
+Uniqueness,2025: duplicate rows / IDs / missing IDs,0 / 0 / 0,No record removals; IDs are unique only within release
+Validity,2025: WorkExp range/fraction / failed parse,42 / 0,Set invalid derived experience to NA; preserve source and record
+Consistency,2025: source AI labels / semicolon role rows,All observed AI labels mapped / 0,Validate exact maps; DevType uses single-choice indicators
+Cross-year schema differences,"Experience, trust, product/model questions",Different constructs/names documented in schema crosswalk,Use source labels and within-year comparisons; keep product/model blocks separate

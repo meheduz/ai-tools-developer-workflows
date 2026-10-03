@@ -52,9 +52,9 @@ def prepare(username, public=False):
                 archive.write(path, f'results/{path.name}')
     description = f'''# AI Tools in Developers' Workflows — Project 44
 
-How did developers' use of AI tools change between 2023 and 2025, and how did
-their attitudes change alongside it? This project examines current use,
-sentiment and trust in the official Stack Overflow Developer Surveys. We also
+How did current AI use and sentiment differ across respondents in the 2023–2025
+Stack Overflow Developer Surveys? This project examines current use,
+sentiment and trust in those annual samples. We also
 compare experience groups, developer roles and Bangladesh respondents with
 the global sample.
 
@@ -126,7 +126,9 @@ explain those differences before comparing results and avoid causal claims.
             cell['outputs'] = []
             cell['execution_count'] = None
     bootstrap = (ROOT / 'kaggle' / 'bootstrap.py').read_text()
-    nb['cells'][4:4] = [
+    setup_index = next(i for i, cell in enumerate(nb['cells'])
+                       if cell.get('id') == 'project44-005')
+    nb['cells'][setup_index:setup_index] = [
         {'cell_type': 'markdown', 'id': 'kaggle-runtime-note', 'metadata': {}, 'source': [
             '### Running this notebook on Kaggle\n',
             'The three survey releases are attached as a dataset. The setup below '

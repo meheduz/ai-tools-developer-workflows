@@ -1,0 +1,7 @@
+feature,source,source_missing_n,derived_missing_n,intentional_extra_missing_n
+ai_use_binary,AISelect,21212,21212,0
+sentiment_score,AISent,62971,67558,4587
+favorable_sentiment,AISent,62971,62971,0
+experience_years,experience_input,43173,43215,42
+experience_band,experience_years,43215,43215,0
+age_h,Age,0,1149,1149

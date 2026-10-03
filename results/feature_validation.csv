@@ -1,0 +1,16 @@
+Check,Records checked,Nonmissing source observations,Missing-value behavior,Status
+AI-use mapping / missingness,203812,182600,Source unanswered -> NA in both derived fields,PASS
+Sentiment source / ordinal mapping,203812,140841,Ordinal score additionally excludes Unsure,PASS
+favorable_sentiment: every category / missingness,203812,140841,Indifferent and Unsure are valid 0; unanswered -> NA,PASS
+Experience source / parsing / range,203812,160639,Source NA plus declared invalid values -> derived NA,PASS
+Experience bands / exact boundaries,203812,160597,NA experience -> NA band,PASS
+Tool block 2023: AISearchHaveWorkedWith (11 choices),89184,56328,Unanswered choices and every outside-year cell -> NA,PASS
+Tool block 2023: AIDevHaveWorkedWith (10 choices),89184,25904,Unanswered choices and every outside-year cell -> NA,PASS
+Tool block 2024: AISearchDevHaveWorkedWith (25 choices),65437,44453,Unanswered choices and every outside-year cell -> NA,PASS
+Tool block 2025: AIModelsHaveWorkedWith (17 choices),49191,16281,Unanswered choices and every outside-year cell -> NA,PASS
+tool_count consistency 2023,89184,25904,Only primary question; unanswered -> NA,PASS
+tool_count consistency 2024,65437,44453,Only primary question; unanswered -> NA,PASS
+tool_count consistency 2025,49191,16281,Only primary question; unanswered -> NA,PASS
+Role indicators / single-choice semantics / status flag,203812,179997,Question unanswered -> NA choices; answered flag 0,PASS
+Trust source / missingness,203812,131995,Year-specific trust source NA retained,PASS
+Age labels / missingness,203812,203812,Refusal excluded only in age_h; source Age retained,PASS
